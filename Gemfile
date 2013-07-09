@@ -7,3 +7,6 @@ gem 'pygments.rb'
 
 gem 'haml'
 gem 'sass'
+
+gem 'unicorn'
+gem 'shotgun'
