@@ -1,20 +1,37 @@
-module Paste
-  def get(params)
-    table.where(params).first
+class Paste
+  attr_reader :contents
+
+  class << self
+    def find(id)
+      record = DB[:pastes].where(id: id).first
+      record ? new(record[:contents]) : nil
+    end
   end
 
-  def add(params)
-    id = table.insert(params)
-    return unless id.is_a?(Integer)
-
-    get(id: id)
+  def initialize(contents)
+    @contents = contents
   end
 
-  private
-
-  def table
-    DB[:pastes]
+  def save
+    encrypt!
+    DB[:pastes].insert(contents: contents)
   end
 
-  extend self
+  def decrypt(key)
+    @key = key
+    decrypt!
+    self
+  end
+
+  def key
+    @key ||= SecureRandom.hex
+  end
+
+  def encrypt!
+    @contents = Base64.encode64(Encryptor.encrypt(value: contents, key: key))
+  end
+
+  def decrypt!
+    @contents = Encryptor.decrypt(value: Base64.decode64(contents), key: key)
+  end
 end

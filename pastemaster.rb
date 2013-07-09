@@ -1,8 +1,10 @@
 require 'securerandom'
+require 'base64'
 
 require 'bundler/setup'
 require 'sinatra'
 require 'sequel'
+require 'encryptor'
 require 'haml'
 
 require 'app/config'
@@ -17,12 +19,17 @@ class Pastemaster < Sinatra::Application
   end
 
   post '/' do
-    record = Paste.add(handle: SecureRandom.hex, contents: params[:contents])
-    redirect record ? "/#{id}/#{record[:handle]}" : ''
+    paste = Paste.new(params[:contents])
+    id = paste.save
+
+    redirect "/#{id}/#{paste.key}"
   end
 
-  get '/:id/:handle' do
-    @record = Paste.get(id: params[:id], handle: params[:handle])
+  get '/:id/:key' do
+    @paste = Paste.find(params[:id])
+    redirect '/' unless @paste
+
+    @paste.decrypt(params[:key])
     haml :show, layout: :default
   end
 end

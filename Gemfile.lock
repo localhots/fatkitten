@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    encryptor (1.1.3)
     haml (4.0.3)
       tilt
     kgio (2.8.0)
@@ -32,6 +33,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  encryptor
   haml
   pg
   pygments.rb
