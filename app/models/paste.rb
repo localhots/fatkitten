@@ -1,21 +1,21 @@
 class Paste
-  attr_reader :contents, :type
+  attr_reader :contents, :syntax
 
   class << self
     def find(id)
       record = DB[:pastes].where(id: id).first
-      record ? new(record[:contents], record[:type]) : nil
+      record ? new(record[:contents], record[:syntax]) : nil
     end
   end
 
-  def initialize(contents, type = nil)
+  def initialize(contents, syntax = nil)
     @contents = contents
-    @type = type if CONFIG.available_syntaxes.include?(type)
+    @syntax = syntax if CONFIG.available_syntaxes.include?(syntax)
   end
 
   def save
     encrypt!
-    DB[:pastes].insert(contents: contents, type: type)
+    DB[:pastes].insert(contents: contents, syntax: syntax)
   end
 
   def decrypt(key)
@@ -37,7 +37,7 @@ class Paste
   end
 
   def highlighted
-    Pygments.highlight(contents, lexer: type, options: { linenos: 'table' })
+    Pygments.highlight(contents, lexer: syntax, options: { linenos: 'table' })
   end
 
   def paragraph
@@ -45,6 +45,6 @@ class Paste
   end
 
   def html
-    type ? highlighted : paragraph
+    syntax ? highlighted : paragraph
   end
 end

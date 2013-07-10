@@ -34,13 +34,13 @@ class Pastemaster < Sinatra::Application
   use StylusAssets
 
   get '/' do
-    @lexers = CONFIG.syntaxes_map
+    @syntaxes = CONFIG.syntaxes_map
 
     slim :form, layout: :default
   end
 
   post '/' do
-    paste = Paste.new(params[:contents], params[:type])
+    paste = Paste.new(params[:contents], params[:syntax])
     id = paste.save
 
     redirect "/#{id}/#{paste.key}"

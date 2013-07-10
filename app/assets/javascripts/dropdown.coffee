@@ -1,7 +1,7 @@
 class Selector
   constructor: (selector) ->
     @input = $("#{selector}-input")
-    @dropdown = $(selector)
+    @dropdown = $("#{selector}-selector")
     @placeholder = @dropdown.children 'span'
     @prefix = @placeholder.text()
     @options = @dropdown.find 'ul.dropdown > li'
@@ -29,6 +29,6 @@ class Selector
     @input.val value
 
 $ ->
-  new Selector '#type'
+  new Selector '#syntax'
   $(document).on 'click', (e) ->
     $('.wrapper-dropdown').removeClass 'active'
