@@ -24,6 +24,7 @@ require 'lib/assets'
 class Pastemaster < Sinatra::Application
   set :server, 'unicorn'
   set :public_folder, 'public'
+  set :views, File.expand_path('../app/views', __FILE__)
 
   set :slim, pretty: true
 
@@ -46,7 +47,7 @@ class Pastemaster < Sinatra::Application
   end
 
   get '/:id/:key' do
-    @paste = Paste.find(params[:id])
+    @paste = Paste.find(params[:id].to_i)
     return not_found unless @paste
 
     begin

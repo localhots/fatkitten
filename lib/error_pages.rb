@@ -1,5 +1,5 @@
 class ErrorPages < Sinatra::Base
-  set :views, File.expand_path('../../views', __FILE__)
+  set :views, File.expand_path('../../app/views', __FILE__)
 
   not_found do
     status 404
