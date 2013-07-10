@@ -10,6 +10,6 @@ $ ->
   $contents.focus()
 
   # Binding submit event to new button
-  $button.on 'click', ->
+  $button.on 'mouseup', ->
     $form.submit()
     false

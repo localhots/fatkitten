@@ -11,6 +11,7 @@ require 'slim'
 require 'coffee_script'
 require 'stylus'
 require 'stylus/tilt'
+require 'pygments'
 
 require 'lib/error_pages'
 require 'lib/assets'
@@ -46,8 +47,9 @@ class Pastemaster < Sinatra::Application
 
     begin
       @paste.decrypt(params[:key])
+
       slim :show, layout: :default
-    rescue => Error
+    rescue OpenSSL::Cipher::CipherError
       forbidden
     end
   end
