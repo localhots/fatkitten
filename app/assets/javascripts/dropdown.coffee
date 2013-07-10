@@ -20,6 +20,7 @@ class Selector
       $el.addClass 'selected'
       self.placeholder.text "#{self.prefix}: #{$el.text()}"
       self.setValue $el.data 'value'
+      $('textarea').focus()
 
     @options.filter('.selected').click()
     @dropdown.removeClass 'active'

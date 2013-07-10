@@ -10,7 +10,7 @@ class Paste
 
   def initialize(contents, type = nil)
     @contents = contents
-    @type = type if available_types.include?(type)
+    @type = type if CONFIG.available_syntaxes.include?(type)
   end
 
   def save
@@ -46,9 +46,5 @@ class Paste
 
   def html
     type ? highlighted : paragraph
-  end
-
-  def available_types
-    @available_types ||= Pygments::Lexer.all.map(&:aliases).flatten
   end
 end

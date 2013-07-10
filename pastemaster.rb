@@ -2,6 +2,7 @@ $:.unshift File.dirname(__FILE__)
 
 require 'securerandom'
 require 'base64'
+require 'yaml'
 
 require 'bundler/setup'
 require 'sinatra'
@@ -13,11 +14,12 @@ require 'stylus'
 require 'stylus/tilt'
 require 'pygments'
 
+require 'app/models/configuration'
+require 'app/models/paste'
+require 'config/initializers/configuration'
+require 'config/initializers/database'
 require 'lib/error_pages'
 require 'lib/assets'
-require 'app/config'
-require 'app/database'
-require 'app/paste'
 
 class Pastemaster < Sinatra::Application
   set :server, 'unicorn'
@@ -30,14 +32,8 @@ class Pastemaster < Sinatra::Application
   use CoffeeAssets
   use StylusAssets
 
-  def fetch_lexers
-    @lexers_list ||= Pygments::Lexer.all.map do |lexer|
-      { alias: lexer.aliases.first, name: lexer.name }
-    end.sort_by{ |a| a[:name] }
-  end
-
   get '/' do
-    @lexers = fetch_lexers
+    @lexers = CONFIG.syntaxes_map
 
     slim :form, layout: :default
   end

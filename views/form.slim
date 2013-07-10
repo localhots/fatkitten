@@ -5,7 +5,7 @@ form action="/" method="post" accept-charset="UTF-8"
     span Syntax
     ul.dropdown
       li.selected data-value="" Plain Text
-      - for lexer in @lexers
-        li data-value=lexer[:alias] =lexer[:name]
+      - for code, name in @lexers
+        li data-value=code =name
   input type="submit" value="Save"
   a href="#" role="submit" Save
