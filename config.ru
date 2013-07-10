@@ -1,6 +1,3 @@
-$:.unshift File.dirname(__FILE__)
-require 'pastemaster'
-
-use Rack::ShowExceptions
+require File.expand_path('../pastemaster', __FILE__)
 
 run Pastemaster.new

@@ -1,3 +1,5 @@
+$:.unshift File.dirname(__FILE__)
+
 require 'securerandom'
 require 'base64'
 
@@ -5,17 +7,30 @@ require 'bundler/setup'
 require 'sinatra'
 require 'sequel'
 require 'encryptor'
-require 'haml'
+require 'slim'
+require 'coffee_script'
+require 'stylus'
+require 'stylus/tilt'
 
+require 'lib/error_pages'
+require 'lib/assets'
 require 'app/config'
 require 'app/database'
 require 'app/paste'
 
 class Pastemaster < Sinatra::Application
+  set :server, 'unicorn'
   set :public_folder, 'public'
 
+  set :slim, pretty: true
+
+  use ErrorPages
+  helpers ErrorPages::Forbidden
+  use CoffeeAssets
+  use StylusAssets
+
   get '/' do
-    haml :form, layout: :default
+    slim :form, layout: :default
   end
 
   post '/' do
@@ -27,9 +42,13 @@ class Pastemaster < Sinatra::Application
 
   get '/:id/:key' do
     @paste = Paste.find(params[:id])
-    redirect '/' unless @paste
+    return not_found unless @paste
 
-    @paste.decrypt(params[:key])
-    haml :show, layout: :default
+    begin
+      @paste.decrypt(params[:key])
+      slim :show, layout: :default
+    rescue => Error
+      forbidden
+    end
   end
 end

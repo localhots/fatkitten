@@ -1,10 +1,16 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.6.3)
     encryptor (1.1.3)
-    haml (4.0.3)
-      tilt
+    execjs (1.4.0)
+      multi_json (~> 1.0)
     kgio (2.8.0)
+    libv8 (3.11.8.17)
+    multi_json (1.7.7)
     pg (0.15.1)
     posix-spawn (0.3.6)
     pygments.rb (0.5.1)
@@ -14,7 +20,7 @@ GEM
     rack-protection (1.5.0)
       rack
     raindrops (0.11.0)
-    sass (3.2.9)
+    ref (1.0.5)
     sequel (4.0.0)
     shotgun (0.9)
       rack (>= 1.0)
@@ -22,6 +28,17 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
+    slim (2.0.0)
+      temple (~> 0.6.5)
+      tilt (~> 1.3, >= 1.3.3)
+    stylus (0.7.2)
+      execjs
+      stylus-source
+    stylus-source (0.31.0)
+    temple (0.6.5)
+    therubyracer (0.11.4)
+      libv8 (~> 3.11.8.12)
+      ref
     tilt (1.4.1)
     unicorn (4.6.3)
       kgio (~> 2.6)
@@ -33,12 +50,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  coffee-script
   encryptor
-  haml
+  execjs
   pg
   pygments.rb
-  sass
   sequel
   shotgun
   sinatra
+  slim
+  stylus
+  therubyracer
   unicorn

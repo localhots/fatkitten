@@ -15,8 +15,11 @@ gem 'encryptor'
 # Syntax Highlighting
 gem 'pygments.rb'
 
+# JS
+gem 'execjs'
+gem 'therubyracer'
+
 # Sugar
-gem 'haml'
-gem 'sass'
-
-
+gem 'coffee-script'
+gem 'slim'
+gem 'stylus'
