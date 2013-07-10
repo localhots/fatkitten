@@ -1,4 +1,11 @@
-form#pasteform action="/" method="post" accept-charset="UTF-8"
-  textarea#contents name="contents"
-  input#submitbtn type="submit" value="Save"
-  a#submitlnk href="#" role="submit" Save
+form action="/" method="post" accept-charset="UTF-8"
+  textarea name="contents"
+  input id="type-input" type="hidden" name="type" value=""
+  div id="type" class="wrapper-dropdown" tabindex="1"
+    span Syntax
+    ul.dropdown
+      li.selected data-value="" Plain Text
+      - for lexer in @lexers
+        li data-value=lexer[:alias] =lexer[:name]
+  input type="submit" value="Save"
+  a href="#" role="submit" Save

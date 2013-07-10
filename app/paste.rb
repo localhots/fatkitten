@@ -10,7 +10,7 @@ class Paste
 
   def initialize(contents, type = nil)
     @contents = contents
-    @type = type
+    @type = type if available_types.include?(type)
   end
 
   def save
@@ -37,14 +37,18 @@ class Paste
   end
 
   def highlighted
-    Pygments.highlight(@contents, lexer: 'ruby', options: { linenos: 'table' })
+    Pygments.highlight(contents, lexer: type, options: { linenos: 'table' })
   end
 
   def paragraph
-    "<pre>#{@contents}</pre>"
+    "<pre>#{contents}</pre>"
   end
 
   def html
     type ? highlighted : paragraph
+  end
+
+  def available_types
+    @available_types ||= Pygments::Lexer.all.map(&:aliases).flatten
   end
 end

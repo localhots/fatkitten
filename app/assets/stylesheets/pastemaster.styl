@@ -51,40 +51,33 @@ textarea {
   height: 100%;
   line-height: 120%;
   resize: none;
-  border-style: solid;
-  border-color: #ddd;
+  border: #ddd 1px solid;
   border-radius: 5px;
   padding: .5em;
 }
 
-#submitbtn, #submitlnk {
+form input[type="submit"], form a[role="submit"] {
   float: right;
 }
-#submitlnk {
+form a[role="submit"] {
   background-color: #fefefe;
   background-image: -webkit-linear-gradient(top, #ffffff, #f5f5f5);
   background-image: linear-gradient(to bottom, #ffffff, #f5f5f5);
   box-shadow: 0 1px 2px 2px #ffffff;
   color: #666;
   text-shadow: 0 0 2px #ffffff;
-  border-style: solid;
-  border-color: #ddd;
+  border: #ddd 1px solid;
   border-radius: 4px;
-  border-width: 1px;
   border-bottom-width: 4px;
   font-size: 1em;
   width: 5em;
   text-align: center;
   padding: .4em 0;
-  margin: .5em 0;
+  margin: .4em 0;
   text-decoration: none;
   display: none;
 }
-#submitlnk:active {
+form a[role="submit"]:active {
   box-shadow: 0 0 2px 2px #eee inset;
   border-bottom-width: 1px;
-}
-
-p {
-  width: 100%;
 }

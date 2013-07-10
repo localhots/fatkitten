@@ -30,12 +30,20 @@ class Pastemaster < Sinatra::Application
   use CoffeeAssets
   use StylusAssets
 
+  def fetch_lexers
+    @lexers_list ||= Pygments::Lexer.all.map do |lexer|
+      { alias: lexer.aliases.first, name: lexer.name }
+    end.sort_by{ |a| a[:name] }
+  end
+
   get '/' do
+    @lexers = fetch_lexers
+
     slim :form, layout: :default
   end
 
   post '/' do
-    paste = Paste.new(params[:contents])
+    paste = Paste.new(params[:contents], params[:type])
     id = paste.save
 
     redirect "/#{id}/#{paste.key}"
