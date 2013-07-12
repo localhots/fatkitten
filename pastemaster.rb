@@ -19,7 +19,6 @@ require 'app/models/configuration'
 require 'app/models/paste'
 require 'config/initializers/configuration'
 require 'config/initializers/database'
-require 'config/initializers/sinatra_assetpack_stylus'
 require 'lib/error_pages'
 
 class Pastemaster < Sinatra::Application
