@@ -27,8 +27,11 @@ class Pastemaster < Sinatra::Application
   set :server, 'unicorn'
   set :public_folder, 'public'
   set :views, File.expand_path('../app/views', __FILE__)
+  set :slim, pretty: true
 
   register Sinatra::AssetPack
+  use ErrorPages
+  helpers ErrorPages::Forbidden
 
   assets do
     serve '/assets/js', from: 'app/assets/js'
@@ -47,11 +50,6 @@ class Pastemaster < Sinatra::Application
     js_compression :jsmin
     css_compression :simple
   end
-
-  set :slim, pretty: true
-
-  use ErrorPages
-  helpers ErrorPages::Forbidden
 
   get '/' do
     @syntaxes = CONFIG.syntaxes_map
