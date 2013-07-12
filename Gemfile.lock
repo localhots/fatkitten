@@ -8,9 +8,14 @@ GEM
     encryptor (1.1.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    jsmin (1.0.1)
     kgio (2.8.0)
     libv8 (3.11.8.17)
+    mina (0.3.0)
+      open4
+      rake
     multi_json (1.7.7)
+    open4 (1.3.0)
     pg (0.15.1)
     posix-spawn (0.3.6)
     pygments.rb (0.5.1)
@@ -19,7 +24,10 @@ GEM
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
+    rack-test (0.6.2)
+      rack (>= 1.0)
     raindrops (0.11.0)
+    rake (10.1.0)
     ref (1.0.5)
     sequel (4.0.0)
     shotgun (0.9)
@@ -28,6 +36,11 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
+    sinatra-assetpack (0.2.8)
+      jsmin
+      rack-test
+      sinatra
+      tilt (>= 1.3.0)
     slim (2.0.0)
       temple (~> 0.6.5)
       tilt (~> 1.3, >= 1.3.3)
@@ -53,11 +66,14 @@ DEPENDENCIES
   coffee-script
   encryptor
   execjs
+  mina
   pg
   pygments.rb
+  rake
   sequel
   shotgun
   sinatra
+  sinatra-assetpack
   slim
   stylus
   therubyracer

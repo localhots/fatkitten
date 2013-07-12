@@ -8,6 +8,8 @@ class Configuration
     load_syntax_config
   end
 
+  private
+
   def load_database_config
     config = YAML.load_file(APP_ROOT.join('config', 'database.yml'))
     @database_url = '%s://%s:%s@%s:%s/%s' % [

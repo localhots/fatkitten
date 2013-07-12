@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'sinatra'
 gem 'shotgun'
 gem 'unicorn'
+gem 'rake'
 
 # Database
 gem 'sequel'
@@ -19,7 +20,11 @@ gem 'pygments.rb'
 gem 'execjs'
 gem 'therubyracer'
 
-# Sugar
+# Assets & Sugar
+gem 'sinatra-assetpack'
 gem 'coffee-script'
 gem 'slim'
 gem 'stylus'
+
+# Deployment
+gem 'mina'
