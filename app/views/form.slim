@@ -1,5 +1,9 @@
 form action="/" method="post" accept-charset="UTF-8"
   textarea name="contents"
+
+  input.btn type="submit" value="Save"
+  a.btn href="#" role="submit" Save
+
   input id="syntax-input" type="hidden" name="syntax" value=""
   div.btn id="syntax-selector" class="wrapper-dropdown" tabindex="1"
     span Syntax
@@ -7,5 +11,3 @@ form action="/" method="post" accept-charset="UTF-8"
       li.selected data-value="" Plain Text
       - for code, name in @syntaxes
         li data-value=code =name
-  input type="submit" value="Save"
-  a.btn href="#" role="submit" Save

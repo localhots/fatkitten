@@ -11,7 +11,7 @@ class Selector
     self = this
 
     @dropdown.on 'click', (e) ->
-      $(this).toggleClass('active')
+      $(this).toggleClass('active') unless $(this).hasClass('disabled')
       false
 
     @options.on 'click', (e) ->

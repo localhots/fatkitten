@@ -47,10 +47,10 @@ textarea, input
 
 .btn
   background-color #fefefe
-  background-image -webkit-linear-gradient(top, #fff, #f0f0f0)
-  background-image linear-gradient(to bottom, #fff, #f0f0f0)
+  background-image -webkit-linear-gradient(top, #fff, #eaeaea)
+  background-image linear-gradient(to bottom, #fff, #eaeaea)
   color #666
-  text-shadow 0 0 .2em #fff
+  text-shadow 0 1px 1px #fff
   border #ddd 1px solid
   border-radius 4px
   font-size 1em
@@ -63,6 +63,10 @@ textarea, input
     box-shadow 0 .1em .2em .1em #eee inset
     border-bottom-width 1px
 
+  &.disabled
+    background #f0f0f0
+    cursor not-allowed
+
 textarea
   background-color #fff
   width 100%
@@ -73,11 +77,17 @@ textarea
   border-radius 5px
   padding .5em
 
+#syntax-selector
+  float right
+  width 13em
+  margin 0.4em
+
 form input[type="submit"], form a[role="submit"]
   float right
 
 form a[role="submit"]
   width 5em
+  font-weight 600
   text-align center
   margin .4em 0
   display none
