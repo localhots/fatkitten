@@ -1,6 +1,6 @@
 protocol: postgres
-username: pastemaster
-password: pastemaster
+username: pastekitten
+password: pastekitten
 host: localhost
 port: 5432
-database: pastemaster
+database: pastekitten

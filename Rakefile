@@ -1,4 +1,4 @@
-APP_FILE = 'pastemaster.rb'
-APP_CLASS = 'Pastemaster'
+APP_FILE = 'pastekitten.rb'
+APP_CLASS = 'Pastekitten'
 
 require 'sinatra/assetpack/rake'

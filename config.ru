@@ -1,3 +1,3 @@
-require File.expand_path('../pastemaster', __FILE__)
+require File.expand_path('../pastekitten', __FILE__)
 
-run Pastemaster.new
+run Pastekitten.new

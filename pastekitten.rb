@@ -21,7 +21,7 @@ require 'config/initializers/configuration'
 require 'config/initializers/database'
 require 'lib/error_pages'
 
-class Pastemaster < Sinatra::Application
+class Pastekitten < Sinatra::Application
   set :root, File.dirname(__FILE__)
   set :server, 'unicorn'
   set :public_folder, 'public'
@@ -35,14 +35,15 @@ class Pastemaster < Sinatra::Application
   assets do
     serve '/assets/js', from: 'app/assets/js'
     serve '/assets/css', from: 'app/assets/css'
+    serve '/assets/img', from: 'app/assets/img'
 
     css :application, '/assets/css/application.css', [
-      '/assets/css/pastemaster.css',
+      '/assets/css/pastekitten.css',
       '/assets/css/dropdown.css',
       '/assets/css/pygments_solarized_modified.css'
     ]
     js :application, '/assets/js/application.js', [
-      '/assets/js/pastemaster.js',
+      '/assets/js/pastekitten.js',
       '/assets/js/dropdown.js'
     ]
 

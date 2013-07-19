@@ -4,8 +4,8 @@ require 'mina/rbenv'
 
 set :user, 'www'
 set :domain, '5.9.98.165'
-set :deploy_to, '/home/www/apps/pastemaster'
-set :repository, 'git@github.com:localhots/pastemaster.git'
+set :deploy_to, '/home/www/apps/pastekitten'
+set :repository, 'git@github.com:localhots/pastekitten.git'
 set :branch, 'master'
 set :rbenv_path, '/usr/local/rbenv'
 set :app_path, ->{ "#{deploy_to}/#{current_path}" }
@@ -55,7 +55,7 @@ namespace :assetpack do
 end
 
 namespace :unicorn do
-  set :unicorn_pid, "/tmp/pastemaster.unicorn.pid"
+  set :unicorn_pid, "/tmp/pastekitten.unicorn.pid"
 
   desc "Start unicorn"
   task :start => :environment do
