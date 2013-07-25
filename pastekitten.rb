@@ -51,6 +51,10 @@ class Pastekitten < Sinatra::Application
     css_compression :simple
   end
 
+  before do
+    correct_domain_name
+  end
+
   get '/' do
     @syntaxes = CONFIG.syntaxes_map
 
@@ -76,6 +80,12 @@ class Pastekitten < Sinatra::Application
       slim :show, layout: :default
     rescue OpenSSL::Cipher::CipherError
       forbidden
+    end
+  end
+
+  def correct_domain_name
+    if %w[ www.pastekitten.com pm.localhots.xxx ].include?(request.host)
+      redirect 'http://pastekitten.com' + request.fullpath
     end
   end
 end
