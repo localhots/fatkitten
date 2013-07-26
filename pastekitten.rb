@@ -51,6 +51,7 @@ class Pastekitten < Sinatra::Application
     css_compression :simple
   end
 
+
   before do
     correct_domain_name
   end
@@ -61,8 +62,18 @@ class Pastekitten < Sinatra::Application
     slim :form, layout: :default
   end
 
+  post '/api/paste' do
+    unless empty? params
+      paste = Paste.new(params[:contents], params[:syntax])
+      id = paste.save
+      "0.0.0.0:4567/#{id}/#{paste.key}"
+    else
+      forbidden
+    end
+  end
+
   post '/' do
-    redirect '/' if params[:contents].nil? || params[:contents].strip.empty?
+    redirect '/' if empty? params
 
     paste = Paste.new(params[:contents], params[:syntax])
     id = paste.save
@@ -87,5 +98,9 @@ class Pastekitten < Sinatra::Application
     if %w[ www.pastekitten.com pm.localhots.xxx ].include?(request.host)
       redirect 'http://pastekitten.com' + request.fullpath
     end
+  end
+
+  def empty? params
+    params[:contents].nil? || params[:contents].strip.empty?
   end
 end
