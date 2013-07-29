@@ -40,8 +40,12 @@ class Paste
     Pygments.highlight(contents, lexer: syntax, options: { linenos: 'table' })
   end
 
+  def parsed_for_links
+    contents.gsub(/(https?:\/\/[\S]+)/, '<a target="_blank" href="\0">\0</a>')
+  end
+
   def paragraph
-    "<pre>#{contents}</pre>"
+    "<pre>#{parsed_for_links}</pre>"
   end
 
   def html
